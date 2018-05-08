@@ -13,6 +13,18 @@ nav a {
 nav a:hover {
   color: hotpink;
 }
+.footer {
+  background-color: #555;
+  bottom: 0;
+  height: 25px;
+  position: fixed;
+  width: 100%;
+}
+.footer-text {
+  color: white;
+  cursor: default;
+  font-size: 11px;
+}
 
 /* DEFAULT STYLES */
 .App {
