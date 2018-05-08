@@ -25,11 +25,13 @@ class Login extends Component {
       // update user with a call to App.js
       this.props.updateUser();
     })
-    .catch(err => { console.log('error', err.response.data) });
+    .catch(err => { console.log('error', err.response.data); });
   }
 
   render() {
-    if (this.props.user) { return(<Redirect to="/profile" />); }
+    if (this.props.user) {
+      return (<Redirect to="/profile" />);
+    }
 
     return(
       <div>

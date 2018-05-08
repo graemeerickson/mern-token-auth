@@ -34,19 +34,16 @@ class App extends Component {
         console.log('success:', response);
         this.setState({
           user: response.data.user
-        })
+        });
       })
-      // bad token
       .catch(err => {
         console.log('error:', err);
-        console.log('error response:', err.response);
         localStorage.removeItem('loginToken');
         this.setState({
           user: null
         })
       });
     }
-    // no token
     else {
       console.log('No token was found');
       localStorage.removeItem('loginToken');
@@ -61,7 +58,7 @@ class App extends Component {
       <div className="App">
         <Router>
           <div className="container">
-            <Nav />
+            <Nav user={this.state.user} updateUser={this.getUser} />
             <Route exact path="/" component={Home} />
             <Route path="/login" component={ () => (<Login user={this.state.user} updateUser={this.getUser} />) } />
             <Route path="/signup" component={ () => (<Signup user={this.state.user} updateUser={this.getUser} />) } />
