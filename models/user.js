@@ -37,13 +37,7 @@ userSchema.set('toJSON', {
 
 // check to verify the password is correct
 userSchema.methods.authenticated = function(password, callback) {
-  bcrypt.compare(password, this.password, function(err, res) {
-    if (err) {
-      callback(err);
-    } else {
-      callback(null, res ? this : false);
-    }
-  });
+  return bcrypt.compareSync(password, this.password);
 }
 
 // Mongoose's version of a beforeCreate hook
