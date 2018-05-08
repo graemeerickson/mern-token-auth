@@ -1,6 +1,7 @@
 require('dotenv').config();
 var bodyParser = require('body-parser');
 var express = require('express');
+var expressJWT = require('express-jwt');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var mongoose = require('mongoose');
