@@ -65,10 +65,9 @@ router.post('/signup', function(req, res) {
 });
 
 // This is checked on a browser refresh
-router.post('/me/from/token', function(req, res, next) {
+router.post('/me/from/token', function(req, res) {
   // check header or url parameters or post parameters for token
-  console.log('find user from token', req.body);
-  res.send('keep logged in');
+  res.send({ user: req.user });
 });
 
 module.exports = router;

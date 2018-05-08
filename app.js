@@ -25,7 +25,20 @@ app.use(function(req, res, next) {
 });
 
 // Controllers
-app.use('/auth', require('./routes/auth'));
+app.use('/auth', expressJWT({
+  secret: process.env.JWT_SECRET,
+  getToken: function fromRequest(req) {
+    if (req.body.headers.Authorization && req.body.headers.Authorization.split(' ')[0] === 'Bearer') {
+      return req.body.headers.Authorization.split(' ')[1];
+    }
+    return null;
+  }
+}).unless({
+  path: [
+    { url: '/auth/login', methods: ['POST'] },
+    { url: '/auth/signup', methods: ['POST'] }
+  ]
+}), require('./routes/auth'));
 
 app.get('*', function(req, res, next) {
 	res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
